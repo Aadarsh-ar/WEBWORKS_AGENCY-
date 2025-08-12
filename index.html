@@ -3,78 +3,1092 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WEBWORKS AGENCY</title>
-    <link rel="stylesheet" href="style.css">
+    <title>WEBWORKS AGENCY - AI Solutions & Web Services</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 50%, #16213e 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(45deg, #00d4ff, #0099ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #00d4ff;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #00d4ff, #0099ff);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 10;
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00d4ff, #ffffff, #0099ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: linear-gradient(45deg, #00d4ff, #0099ff);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        /* 3D Background Animation */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.8), transparent);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        /* AI Agents Info Section */
+        .ai-info {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 4rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .ai-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .ai-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #00d4ff, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .ai-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .ai-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .ai-feature {
+            background: rgba(0, 212, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            text-align: center;
+        }
+
+        .ai-feature h4 {
+            color: #00d4ff;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .ai-visual {
+            height: 400px;
+            background: linear-gradient(45deg, rgba(0, 212, 255, 0.1), rgba(0, 153, 255, 0.1));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Team Info Section */
+        .team-info {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 4rem 2rem;
+            margin: 2rem 0;
+        }
+
+        .team-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .team-member {
+            background: rgba(0, 212, 255, 0.1);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .team-member h3 {
+            color: #00d4ff;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info {
+            margin: 1rem 0;
+        }
+
+        .contact-info p {
+            margin: 0.5rem 0;
+            font-size: 1rem;
+        }
+        .services {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(45deg, #00d4ff, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.6);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #00d4ff, #0099ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #00d4ff;
+        }
+
+        /* About Section */
+        .about {
+            padding: 5rem 2rem;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            background: linear-gradient(45deg, #00d4ff, #ffffff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+
+        .about-visual, .ai-visual {
+            height: 400px;
+            background: linear-gradient(45deg, rgba(0, 212, 255, 0.1), rgba(0, 153, 255, 0.1));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .jarvis-interface {
+            width: 250px;
+            height: 250px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .jarvis-core {
+            width: 80px;
+            height: 80px;
+            border: 3px solid #00d4ff;
+            border-radius: 50%;
+            position: relative;
+            animation: jarvisPulse 2s ease-in-out infinite;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.3), rgba(0, 212, 255, 0.1));
+        }
+
+        .jarvis-ring {
+            position: absolute;
+            border: 2px solid rgba(0, 212, 255, 0.6);
+            border-radius: 50%;
+            animation: jarvisRotate 4s linear infinite;
+        }
+
+        .jarvis-ring:nth-child(1) {
+            width: 120px;
+            height: 120px;
+            top: -20px;
+            left: -20px;
+            border-left-color: transparent;
+            border-bottom-color: transparent;
+        }
+
+        .jarvis-ring:nth-child(2) {
+            width: 160px;
+            height: 160px;
+            top: -40px;
+            left: -40px;
+            border-right-color: transparent;
+            border-top-color: transparent;
+            animation-direction: reverse;
+            animation-duration: 6s;
+        }
+
+        .jarvis-ring:nth-child(3) {
+            width: 200px;
+            height: 200px;
+            top: -60px;
+            left: -60px;
+            border-left-color: transparent;
+            border-bottom-color: transparent;
+            animation-duration: 8s;
+        }
+
+        .jarvis-dots {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: #00d4ff;
+            border-radius: 50%;
+            animation: jarvisOrbit 3s linear infinite;
+        }
+
+        .jarvis-dots:nth-child(4) {
+            top: 10px;
+            left: 50%;
+            animation-delay: 0s;
+        }
+
+        .jarvis-dots:nth-child(5) {
+            top: 50%;
+            right: 10px;
+            animation-delay: 0.75s;
+        }
+
+        .jarvis-dots:nth-child(6) {
+            bottom: 10px;
+            left: 50%;
+            animation-delay: 1.5s;
+        }
+
+        .jarvis-dots:nth-child(7) {
+            top: 50%;
+            left: 10px;
+            animation-delay: 2.25s;
+        }
+
+        .jarvis-lines {
+            position: absolute;
+            width: 2px;
+            background: linear-gradient(to bottom, #00d4ff, transparent);
+            animation: jarvisLines 2s ease-in-out infinite;
+        }
+
+        .jarvis-lines:nth-child(8) {
+            height: 40px;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation-delay: 0s;
+        }
+
+        .jarvis-lines:nth-child(9) {
+            height: 40px;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%) rotate(180deg);
+            animation-delay: 1s;
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 5rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            border: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #00d4ff;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 212, 255, 0.3);
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #00d4ff;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(45deg, #00d4ff, #0099ff);
+            border: none;
+            border-radius: 10px;
+            color: #ffffff;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4);
+        }
+
+        /* Social Media Icons */
+        .social-media {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            perspective: 1000px;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            font-size: 1rem;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .social-icon:hover {
+            transform: translateY(-8px) rotateX(10deg) rotateY(5deg) scale(1.15);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .social-icon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: linear-gradient(145deg, rgba(255,255,255,0.2), rgba(255,255,255,0.05));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .social-icon:hover::before {
+            opacity: 1;
+        }
+
+        .social-icon::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: calc(100% - 4px);
+            height: calc(100% - 4px);
+            border-radius: 50%;
+            background: linear-gradient(145deg, rgba(255,255,255,0.1), transparent);
+            pointer-events: none;
+        }
+
+        .instagram {
+            background: linear-gradient(45deg, #833ab4, #fd1d1d, #fcb045);
+            box-shadow: 0 4px 15px rgba(253, 29, 29, 0.3);
+        }
+
+        .instagram:hover {
+            box-shadow: 0 20px 40px rgba(253, 29, 29, 0.4);
+        }
+
+        .linkedin {
+            background: linear-gradient(145deg, #0077b5, #005885);
+            box-shadow: 0 4px 15px rgba(0, 119, 181, 0.3);
+        }
+
+        .linkedin:hover {
+            box-shadow: 0 20px 40px rgba(0, 119, 181, 0.4);
+        }
+
+        .email {
+            background: linear-gradient(45deg, #ea4335, #34a853, #4285f4, #fbbc05);
+            box-shadow: 0 4px 15px rgba(66, 133, 244, 0.3);
+        }
+
+        .email:hover {
+            box-shadow: 0 20px 40px rgba(66, 133, 244, 0.4);
+        }
+
+        .facebook {
+            background: linear-gradient(145deg, #1877f2, #145cc4);
+            box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
+        }
+
+        .facebook:hover {
+            box-shadow: 0 20px 40px rgba(24, 119, 242, 0.4);
+        }
+
+        .whatsapp {
+            background: linear-gradient(145deg, #25d366, #1da851);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp:hover {
+            box-shadow: 0 20px 40px rgba(37, 211, 102, 0.4);
+        }
+
+        /* 3D Floating Animation */
+        @keyframes float3d {
+            0%, 100% { 
+                transform: translateY(0px) rotateX(0deg) rotateY(0deg); 
+            }
+            25% { 
+                transform: translateY(-3px) rotateX(2deg) rotateY(1deg); 
+            }
+            50% { 
+                transform: translateY(-5px) rotateX(0deg) rotateY(-1deg); 
+            }
+            75% { 
+                transform: translateY(-2px) rotateX(-1deg) rotateY(0deg); 
+            }
+        }
+
+        .social-icon {
+            animation: float3d 4s ease-in-out infinite;
+        }
+
+        .social-icon:nth-child(1) { animation-delay: 0s; }
+        .social-icon:nth-child(2) { animation-delay: 0.5s; }
+        .social-icon:nth-child(3) { animation-delay: 1s; }
+        .social-icon:nth-child(4) { animation-delay: 1.5s; }
+        .social-icon:nth-child(5) { animation-delay: 2s; }
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid rgba(0, 212, 255, 0.3);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(180deg); }
+        }
+
+        /* Jarvis Animations */
+        @keyframes jarvisPulse {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+            }
+            50% { 
+                transform: scale(1.1);
+                box-shadow: 0 0 40px rgba(0, 212, 255, 0.8);
+            }
+        }
+
+        @keyframes jarvisRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes jarvisOrbit {
+            0% { transform: rotate(0deg) translateX(60px) rotate(0deg); }
+            100% { transform: rotate(360deg) translateX(60px) rotate(-360deg); }
+        }
+
+        @keyframes jarvisLines {
+            0%, 100% { 
+                opacity: 0.3;
+                transform: translateX(-50%) scaleY(1);
+            }
+            50% { 
+                opacity: 1;
+                transform: translateX(-50%) scaleY(1.5);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.2rem; }
+            .nav-links { display: none; }
+            .about-container { grid-template-columns: 1fr; }
+            .ai-container { grid-template-columns: 1fr; }
+            .team-grid { grid-template-columns: 1fr; }
+            .ai-features { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
 <body>
-
-<!-- Navigation -->
-<header class="header">
-    <div class="logo">WEBWORKS</div>
-    <nav class="nav">
-        <a href="#home">Home</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#contact">Contact</a>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">WEBWORKS AGENCY</div>
+            <ul class="nav-links">
+                <li><a onclick="scrollToSection('home')">HOME</a></li>
+                <li><a onclick="scrollToSection('services')">SERVICES</a></li>
+                <li><a onclick="scrollToSection('about')">ABOUT</a></li>
+                <li><a onclick="scrollToSection('contact')">CONTACT US</a></li>
+            </ul>
+        </div>
     </nav>
-</header>
 
-<!-- Hero Section -->
-<section id="home" class="hero">
-    <div id="particles-js" class="particles"></div>
-    <div class="hero-content">
-        <h1>We Build Stunning Websites</h1>
-        <p>Crafting modern, responsive, and user-friendly web experiences.</p>
-        <button onclick="scrollToSection('contact')">Get in Touch</button>
-    </div>
-</section>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="particles"></div>
+        <div class="hero-content">
+            <h1>AI-Powered Digital Solutions</h1>
+            <p>Building the future with cutting-edge AI models, intelligent agents, and modern web technologies</p>
+            <a class="cta-button" onclick="scrollToSection('services')">Explore Our Services</a>
+        </div>
+    </section>
 
-<!-- About Section -->
-<section id="about" class="about">
-    <h2>About Us</h2>
-    <p>We are a creative web agency focused on design, development, and branding.</p>
-</section>
+    <!-- AI Agents Information Section -->
+    <section class="ai-info">
+        <div class="ai-container">
+            <div class="ai-text">
+                <h2>How AI Agents Work</h2>
+                <p>AI agents are autonomous software entities that can perceive their environment, make decisions, and take actions to achieve specific goals. They operate using advanced machine learning algorithms, natural language processing, and decision-making frameworks.</p>
+                
+                <p>Our AI agents utilize neural networks trained on vast datasets to understand context, interpret user inputs, and provide intelligent responses. They can learn from interactions, adapt to new scenarios, and integrate with existing systems seamlessly.</p>
+                
+                <p>The core architecture includes perception modules (for understanding inputs), reasoning engines (for decision-making), knowledge bases (for storing information), and action systems (for executing tasks). This creates truly intelligent systems that can work autonomously while maintaining human-like understanding.</p>
+                
+                <div class="ai-features">
+                    <div class="ai-feature">
+                        <h4>Natural Language Processing</h4>
+                        <p>Understanding and generating human language with context awareness</p>
+                    </div>
+                    <div class="ai-feature">
+                        <h4>Machine Learning</h4>
+                        <p>Continuous learning and adaptation from new data and interactions</p>
+                    </div>
+                    <div class="ai-feature">
+                        <h4>Decision Making</h4>
+                        <p>Intelligent reasoning and autonomous decision-making capabilities</p>
+                    </div>
+                    <div class="ai-feature">
+                        <h4>Integration</h4>
+                        <p>Seamless integration with existing systems and workflows</p>
+                    </div>
+                </div>
+            </div>
+            <div class="ai-visual">
+                <div class="jarvis-interface">
+                    <div class="jarvis-ring"></div>
+                    <div class="jarvis-ring"></div>
+                    <div class="jarvis-ring"></div>
+                    <div class="jarvis-dots"></div>
+                    <div class="jarvis-dots"></div>
+                    <div class="jarvis-dots"></div>
+                    <div class="jarvis-dots"></div>
+                    <div class="jarvis-lines"></div>
+                    <div class="jarvis-lines"></div>
+                    <div class="jarvis-core">
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #00d4ff; font-size: 12px; font-weight: bold;">AI</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- Services Section -->
-<section id="services" class="services">
-    <h2>Our Services</h2>
-    <div class="service-list">
-        <div class="service-card">Web Design</div>
-        <div class="service-card">Development</div>
-        <div class="service-card">SEO</div>
-    </div>
-</section>
+    <!-- Team Information Section -->
+    <section class="team-info">
+        <div class="team-container">
+            <h2 class="section-title">Meet Our Team</h2>
+            <div class="team-grid">
+                <div class="team-member">
+                    <h3>Aadarsh</h3>
+                    <p>AI Engineer & Full Stack Developer</p>
+                    <div class="contact-info">
+                        <p>📧 theaaadarsh15@gmail.com</p>
+                        <p>📞 +91 6305367443</p>
+                    </div>
+                </div>
+                <div class="team-member">
+                    <h3>Eswar</h3>
+                    <p>AI Specialist & Web Developer</p>
+                    <div class="contact-info">
+                        <p>📧 steeveeswar@gmail.com</p>
+                        <p>📞 +91 9391536082</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- Contact Section -->
-<section id="contact" class="contact">
-    <h2>Contact Us</h2>
-    <form class="contact-form">
-        <input type="text" placeholder="Your Name" required>
-        <input type="email" placeholder="Your Email" required>
-        <textarea placeholder="Your Message" required></textarea>
-        <button type="submit">Send Message</button>
-    </form>
-    <div class="social-media">
-        <a href="#">📷</a>
-        <a href="#">💼</a>
-        <a href="#">✉️</a>
-        <a href="#">📘</a>
-        <a href="#">💬</a>
-    </div>
-</section>
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <h2 class="section-title">OUR SERVICES</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">🤖</div>
+                <h3>AI Model Development</h3>
+                <p>Custom machine learning models tailored to your business needs. From natural language processing to computer vision, we build intelligent solutions that drive results.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🎯</div>
+                <h3>AI Agent Creation</h3>
+                <p>Intelligent autonomous agents that can interact, learn, and perform complex tasks. Perfect for customer service, data analysis, and process automation.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🌐</div>
+                <h3>Modern Web Development</h3>
+                <p>We create stunning, responsive websites and web applications using cutting-edge technologies like React, Vue.js, Node.js, and modern CSS frameworks. Our development process focuses on performance optimization, SEO best practices, and user experience design.</p>
+                <br>
+                <p>From progressive web apps (PWAs) to complex enterprise solutions, we build scalable architectures using cloud technologies, microservices, and serverless computing. Our expertise includes frontend frameworks, backend development, database design, API integration, and deployment strategies.</p>
+                <br>
+                <p>We ensure cross-browser compatibility, mobile responsiveness, accessibility compliance (WCAG), and implement modern security practices. Each project is crafted with clean, maintainable code and follows industry standards for optimal performance and search engine visibility.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⚡</div>
+                <h3>AI Integration Services</h3>
+                <p>Seamlessly integrate AI capabilities into your existing systems. We help businesses leverage artificial intelligence to enhance productivity and innovation.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">📊</div>
+                <h3>Data Analytics & Insights</h3>
+                <p>Transform your data into actionable insights using advanced analytics and AI-driven visualization tools. Make data-driven decisions with confidence.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">🚀</div>
+                <h3>Digital Transformation</h3>
+                <p>Complete digital transformation solutions that modernize your business processes and prepare you for the AI-driven future of commerce.</p>
+            </div>
+        </div>
+    </section>
 
-<!-- Footer -->
-<footer class="footer">
-    <p>© 2025 WEBWORKS AGENCY. All Rights Reserved.</p>
-</footer>
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="about-container">
+            <div class="about-text">
+                <h2>ABOUT WEBWORKS AGENCY</h2>
+                <p>We are pioneers in AI-powered digital solutions, combining cutting-edge artificial intelligence with modern web development to create transformative experiences.</p>
+                <p>Our team of expert developers, AI engineers, and digital strategists work together to deliver innovative solutions that push the boundaries of what's possible in the digital realm.</p>
+                <p>From intelligent chatbots and recommendation systems to fully autonomous AI agents, we're building the future of digital interaction one project at a time.</p>
+            </div>
+            <div class="about-visual">
+                <div class="jarvis-interface">
+                    <div class="jarvis-ring"></div>
+                    <div class="jarvis-ring"></div>
+                    <div class="jarvis-ring"></div>
+                    <div class="jarvis-dots"></div>
+                    <div class="jarvis-dots"></div>
+                    <div class="jarvis-dots"></div>
+                    <div class="jarvis-dots"></div>
+                    <div class="jarvis-lines"></div>
+                    <div class="jarvis-lines"></div>
+                    <div class="jarvis-core">
+                        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #00d4ff; font-size: 12px; font-weight: bold;">WW</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<script src="script.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
-<script>
-particlesJS.load('particles-js', 'particles.json', function() {
-  console.log('Particles.js loaded!');
-});
-</script>
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 class="section-title">CONTACT US</h2>
+        <div class="contact-form">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="service">Service Interest</label>
+                    <input type="text" id="service" name="service" placeholder="AI Models, Web Development, etc.">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+            
+            <!-- Social Media Links -->
+            <div class="social-media">
+                <a href="https://instagram.com/webworks_agency" class="social-icon instagram" title="Instagram">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                    </svg>
+                </a>
+                <a href="https://linkedin.com/company/webworks-agency" class="social-icon linkedin" title="LinkedIn">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                    </svg>
+                </a>
+                <a href="mailto:theaaadarsh15@gmail.com" class="social-icon email" title="Email">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636C.732 21.002 0 20.27 0 19.366V5.457c0-.904.732-1.636 1.636-1.636h3.819l6.545 4.91 6.545-4.91h3.819C23.268 3.821 24 4.553 24 5.457z"/>
+                    </svg>
+                </a>
+                <a href="https://facebook.com/webworks.agency" class="social-icon facebook" title="Facebook">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                    </svg>
+                </a>
+                <a href="https://wa.me/916305367443" class="social-icon whatsapp" title="WhatsApp">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.520-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.484 3.488"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
 
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 WEBWORKS AGENCY. All rights reserved. | Building the Future with AI</p>
+    </footer>
+
+    <script>
+        // Smooth scrolling function using DOM
+        function scrollToSection(sectionId) {
+            const element = document.getElementById(sectionId);
+            if (element) {
+                element.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        }
+
+        // Smooth scrolling for any remaining anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Create animated particles
+        function createParticles() {
+            const particlesContainer = document.querySelector('.particles');
+            const particleCount = 50;
+
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.width = Math.random() * 4 + 2 + 'px';
+                particle.style.height = particle.style.width;
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.top = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(0, 0, 0, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(0, 0, 0, 0.9)';
+            }
+        });
+
+        // Form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Simulate form submission
+            const submitBtn = document.querySelector('.submit-btn');
+            const originalText = submitBtn.textContent;
+            
+            submitBtn.textContent = 'SENDING...';
+            submitBtn.style.background = 'rgba(0, 212, 255, 0.5)';
+            
+            setTimeout(() => {
+                submitBtn.textContent = 'MESSAGE SENT!';
+                submitBtn.style.background = 'linear-gradient(45deg, #00ff88, #00cc66)';
+                
+                // Reset form
+                this.reset();
+                
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.background = 'linear-gradient(45deg, #00d4ff, #0099ff)';
+                }, 2000);
+            }, 1500);
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe service cards
+        document.querySelectorAll('.service-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(50px)';
+            card.style.transition = 'all 0.6s ease';
+            observer.observe(card);
+        });
+
+        // Initialize particles
+        createParticles();
+
+        // Add some interactive Jarvis-style mouse movement
+        document.addEventListener('mousemove', (e) => {
+            const jarvisInterfaces = document.querySelectorAll('.jarvis-interface');
+            jarvisInterfaces.forEach(jarvis => {
+                const rect = jarvis.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                
+                const x = (e.clientX - centerX) / rect.width * 20;
+                const y = (e.clientY - centerY) / rect.height * 20;
+                
+                jarvis.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+            });
+        });
+    </script>
 </body>
 </html>
